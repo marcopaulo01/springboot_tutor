@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Appointment</title>
+</head>
+
+<body>
+	<h1>Hi <span th:text="${tutor.name}"></span></h1>
+	
+	<form th:action="@{/updateappointment}" method="post">
+        <input type="hidden" id="tutorId" name="tutorId" th:value="${tutor.id}" th:readonly="readonly"><br>
+        <input type="hidden" id="id" name="id" th:value="${appointment.id}" th:readonly="readonly"><br>
+        
+        <label for="date">Date:</label>
+        <input type="text" id="date" name="date" th:value="${appointment.date}" required><br/>
+        
+        <label for="startTime">Start Time:</label>
+        <input type="text" id="startTime" name="startTime" th:value="${appointment.startTime}" required><br/>
+        
+        <label for="endTime">End Time:</label>
+        <input type="text" id="endTime" name="endTime" th:value="${appointment.endTime}" required><br/>
+        
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" th:value="${appointment.location}"><br/>
+        
+        <label for="notes">Notes:</label>
+        <textarea id="notes" name="notes" th:text="${appointment.notes}" rows="3" cols="50"></textarea><br/>
+        
+        <label for="subjectId">Subject:</label>
+			<select id="subjectId" name="subjectId" required>
+    			<option th:each="subject : ${subjects}" 
+            		th:value="${subject.id}" 
+            		th:text="${subject.name}" 
+            		th:selected="${subject.id == appointment.subjectId}">Subject Name</option>
+			</select><br/>
+        
+        <label for="studentId">Student:</label>
+			<select id="studentId" name="studentId" required>
+    			<option th:each="student : ${students}" 
+            		th:value="${student.id}" 
+            		th:text="${student.name}" 
+            		th:selected="${student.id == appointment.studentId}">Student Name</option>
+			</select><br/>
+
+        
+        <input type="submit" value="Submit" />
+    </form>
+</body>
+
+</html>

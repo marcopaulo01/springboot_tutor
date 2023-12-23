@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e0e0e0;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00204a; /* Deeper blue */
+        }
+
+        form {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            width: 100%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: calc(100% - 12px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            color: #333;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #388e3c;
+        }
+    </style>
+</head>
+
+<body>
+    <form th:action="@{/updatetutor}" method="post">
+		<h1>Hi <span th:text="${tutor.name}"></span></h1>
+		
+        <input type="hidden" id="id" name="id" th:value="${tutor.id}" th:readonly="readonly"><br>
+        
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" th:value="${tutor.name}" required><br/>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" th:value="${tutor.email}" required><br/>
+        
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" th:value="${tutor.phone}" required><br/>
+        
+        <label for="bio">Bio:</label>
+        <textarea type="text" id="bio" name="bio" rows="3" cols="50" th:text="${tutor.bio}"></textarea><br>
+        
+        <label for="subjectExpertise">Subject Expertise:</label>
+        <textarea type="text" id="subjectExpertise" name="subjectExpertise" th:text="${tutor.subjectExpertise}"></textarea><br>
+        
+        <input type="submit" value="Submit" />
+    </form>
+</body>
+
+</html>

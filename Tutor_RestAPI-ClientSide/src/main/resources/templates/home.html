@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+		body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #e0e0e0; /* Light gray */
+    color: #333; /* Dark gray text color */
+}
+
+h1 {
+    text-align: center;
+    color: #00204a; /* Deeper blue */
+    margin-bottom: 20px; /* Added margin below h1 */
+}
+
+.top {
+    max-width: 300px;
+    width: 100%;
+    background-color: #f5f5f5; /* Lighter gray background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.bottom {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.appointment,
+.tutor,
+.student {
+    flex: 0 0 calc(33.33% - 20px);
+    margin: 10px;
+    max-width: 300px;
+    width: 100%;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #00204a; /* Deeper blue */
+}
+
+p {
+    color: #333; /* Dark gray */
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4caf50; /* Soft green */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #388e3c; /* Darker green on hover */
+}
+
+a {
+    color: #00204a; /* Deeper blue link color */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+	</style>
+</head>
+
+<body>
+    <div class="top">
+        <h1>Welcome <span th:text="${tutor.name}"></span></h1>
+    </div>
+    <div class="bottom">
+        <div class="appointment">
+            <h2>Appointment</h2>
+            <p>Provides the necessary information regarding appointments</p>
+            <a th:href="@{'/appointment/' + ${tutor.id}}"><button>See Appointment List</button></a>
+        </div>
+        <div class="tutor">
+            <h2>Tutor</h2>
+            <p>Offers the requisite details concerning the tutor</p>
+            <a th:href="@{'/edittutor/' + ${tutor.id}}"><button>Update</button></a>
+        </div>
+        <div class="student">
+            <h2>Student</h2>
+            <p>Provides the essential information pertaining to students</p>
+            <a th:href="@{'/student/' + ${tutor.id}}"><button>See Student List</button></a>
+        </div>
+    </div>
+</body>
+
+</html>

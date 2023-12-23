@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Register Page</title>
+    <link rel="stylesheet" th:href="@{index.css}" />
+</head>
+
+<body>
+    <form action="/login" method="post">
+		<h1>Login</h1>
+        <label for="id">Id:</label>
+        <input type="text" id="id" name="id" required><br>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <small th:if="${loginFailed}" style="color: red;">Invalid Id and/or Name</small><br>
+
+        <button type="submit">Login</button>
+        <p>Don't have an account? <a href="/register">Register here</a></p>
+    </form>
+</body>
+
+</html>

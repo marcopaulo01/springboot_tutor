@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5; /* Light gray background */
+            color: #333; /* Dark gray text color */
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #4caf50; /* Similar to Soft Green */
+        }
+
+        button {
+            padding: 8px 16px;
+            background-color: #4caf50; /* Similar to Soft Green */
+            color: #fff; /* White text */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #388e3c; /* Darker green on hover */
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 90%;
+            margin: 20px auto;
+        }
+
+        table, th, td {
+            border: 1px solid #999; /* Light gray */
+        }
+
+        thead {
+            background-color: #ccc; /* Light gray */
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #ddd; /* Light gray */
+            font-weight: bold;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2; /* Alternate row color */
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="..." crossorigin="anonymous">
+</head>
+
+<body>
+	<h1>Hi <span th:text="${tutor.name}"></span></h1>
+	<a th:href="@{'/addappointment/' + ${tutor.id}}"><button>Add an Appointment</button></a>
+	<a th:href="@{'/subject/' + ${tutor.id}}"><button>Show Subject List</button></a>
+	<a th:href="@{'/home/' + ${tutor.id}}"><button>Back to Home</button></a>
+	<table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Location</th>
+                <th>Notes</th>
+                <th>Subject</th>
+                <th>Tutor</th>
+                <th>Student</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="appointment : ${appointments}">
+                <td th:text="${appointment.id}"></td>
+                <td th:text="${appointment.date}"></td>
+                <td th:text="${appointment.startTime}"></td>
+                <td th:text="${appointment.endTime}"></td>
+                <td th:text="${appointment.location}"></td>
+                <td th:text="${appointment.notes}"></td>
+                <td>
+    				<span th:each="subject : ${subjects}" 
+          			th:if="${appointment.subjectId == subject.id}" 
+          			th:text="${subject.name}">
+    				</span>
+				</td>
+                <td>
+    				<span th:each="tutor : ${tutors}" 
+          			th:if="${appointment.tutorId == tutor.id}" 
+          			th:text="${tutor.name}">
+    				</span>
+				</td>
+                <td>
+    				<span th:each="student : ${students}" 
+          			th:if="${appointment.studentId == student.id}" 
+          			th:text="${student.name}">
+    				</span>
+				</td>
+                <td>
+        			<a th:if="${tutor.id == appointment.tutorId}"
+           				th:href="@{'/editappointment/' + ${tutor.id} + '/'+ ${appointment.id}}">
+            			<button><i class="fas fa-pencil-alt"></i></button>
+        			</a>
+    			</td>
+    			<td>
+        			<form th:if="${tutor.id == appointment.tutorId}"
+              			th:action="@{'/deleteappointment/' + ${tutor.id} + '/' + ${appointment.id}}"
+              			method="post">
+            			<button type="submit" onclick="return confirm('Are you sure you want to delete this appointment?')">
+                			<i class="fas fa-trash-alt"></i>
+            			</button>
+        			</form>
+    			</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

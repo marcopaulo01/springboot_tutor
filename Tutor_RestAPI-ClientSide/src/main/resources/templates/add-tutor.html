@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Profile</title>
+    <link rel="stylesheet" th:href="@{add-tutor.css}" />
+</head>
+
+<body>
+    <form th:action="@{/addtutor}" method="post">
+		<h1>Welcome</h1>
+        
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br/>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br/>
+        
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" required><br/>
+        
+        <label for="bio">Bio:</label>
+        <textarea type="text" id="bio" name="bio" rows="3" cols="50"></textarea><br>
+        
+        <label for="subjectExpertise">Subject Expertise:</label>
+        <textarea type="text" id="subjectExpertise" name="subjectExpertise"></textarea><br>
+        
+        <input type="submit" value="Submit" />
+    </form>
+</body>
+
+</html>

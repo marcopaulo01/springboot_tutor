@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student Information</title>
+</head>
+
+<body>
+	<h1>Hi <span th:text="${tutor.name}"></span></h1>
+	
+	<form th:action="@{/updatestudent}" method="post">
+        <input type="hidden" id="tutorId" name="tutorId" th:value="${tutor.id}" th:readonly="readonly"><br>
+        <input type="hidden" id="id" name="id" th:value="${student.id}" th:readonly="readonly"><br>
+        
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" th:value="${student.name}" required><br/>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" th:value="${student.email}" required><br/>
+        
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" th:value="${student.phone}" required><br/>
+        
+        <label for="grade">Grade:</label>
+        <input type="text" id="grade" name="grade" th:value="${student.grade}"><br/>
+        
+        <input type="submit" value="Submit" />
+    </form>
+</body>
+
+</html>
